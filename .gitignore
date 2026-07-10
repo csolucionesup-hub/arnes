@@ -1,0 +1,9 @@
+# Config personal de quien genera su arnés (lleva su clave secreta)
+mi-config.json
+setup-config.json
+*.local.json
+
+# Dependencias y salidas de prueba
+node_modules/
+/test-vault/
+/salida/

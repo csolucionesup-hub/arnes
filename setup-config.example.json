@@ -1,0 +1,14 @@
+{
+  "_comment": "Config de ejemplo para generar-arnes.js. Copia esto, ponle tus datos y córrelo.",
+  "owner": "Ana",
+  "ownerOrg": "Estudio Ana",
+  "key": "CAMBIA-ESTA-CLAVE-SECRETA",
+  "metaFolder": "_SISTEMA",
+  "registry": "_SISTEMA/registro-proyectos.md",
+  "lang": "es",
+  "projects": [
+    { "id": "web-tienda", "name": "Web Tienda", "cerebro": "_WEB-TIENDA", "aliases": ["tienda", "ecommerce"], "codeType": "repo", "codePath": "_WEB-TIENDA/codigo" },
+    { "id": "app-movil", "name": "App Movil", "cerebro": "_APP-MOVIL", "aliases": ["app"], "codeType": "repo", "codePath": "//wsl.localhost/Ubuntu/home/ana/app-movil" },
+    { "id": "contenido", "name": "Contenido y Redes", "cerebro": "_CONTENIDO", "aliases": ["redes", "marketing"], "codeType": "contenido", "codePath": "_CONTENIDO" }
+  ]
+}
