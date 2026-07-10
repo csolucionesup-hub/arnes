@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/como-funciona.svg" alt="Cómo funciona el Arnés — sistema de orden para trabajar con IA" width="840">
+</p>
+
 # skill-arnes — generador del arnés replicable
 
 Convierte el arnés (el sistema de orden de este vault) en algo que **se le puede dar a otra persona**
