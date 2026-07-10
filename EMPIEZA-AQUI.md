@@ -5,7 +5,7 @@ Te regalaron un **sistema de orden para trabajar con IA**. Ponerlo en marcha tom
 
 ## La forma más fácil (recomendada): que la IA lo arme
 
-1. Abre **esta carpeta** con **Claude Code** (o Claude, apuntándolo a esta carpeta).
+1. Abre **esta carpeta** con **Claude Code** (o cualquier IA que trabaje con los archivos de tu computadora — *no* el Claude de la web).
 2. Escríbele: **"arma mi arnés"**.
 3. Te preguntará 3 cositas:
    - Tu **nombre**.

@@ -11,16 +11,19 @@ solo mantiene → cualquiera puede replicarlo.
 ## Preguntas frecuentes
 
 **¿Necesito saber programar?**
-No. Abres la carpeta con tu IA (como Claude) y le dices *"arma mi arnés"*: te hace 3 preguntas y arma todo por ti. (También hay un asistente que te pregunta, sin IA.)
+No. Abres la carpeta en **Claude Code** (la herramienta de Anthropic que deja a la IA trabajar con tus archivos) y le dices *"arma mi arnés"*: te hace 3 preguntas y arma todo por ti. ¿Prefieres sin IA? Corre el **asistente** incluido: te hace las mismas preguntas y solo necesita Node.js.
+
+**¿Es lo mismo que el «Claude» de la página web?**
+No. El arnés se arma en **Claude Code** (o con el asistente incluido), que sí trabaja con las carpetas y archivos de tu computadora. El «Claude» de la web solo conversa: no puede tocar tus archivos.
 
 **¿Es gratis?**
-Sí. El arnés es gratis y de código abierto (licencia MIT). Solo necesitas Node.js (gratis) y una IA que te ayude. Ver el grafo de colores usa Obsidian, también gratis. Hay un extra opcional (auto-enlazar tus notas con IA) que puede tener costo, pero **no hace falta**.
+Sí. El arnés es gratis y de código abierto (licencia MIT). Solo necesitas Node.js (gratis). El grafo de colores usa Obsidian, también gratis. Claude Code necesita una cuenta de Claude; si no la tienes, el **asistente** incluido arma todo sin IA. El extra opcional de auto-enlazar notas con IA puede tener costo, pero **no hace falta**.
 
 **¿Mis datos se suben a la nube? ¿Son míos?**
 Todo vive en **tu** computadora, en tus propias carpetas y notas. El arnés **no sube nada** a ningún lado. Tú siempre mandas; si un día quieres irte, son solo archivos: los mueves o los borras.
 
 **¿Qué necesito instalar?**
-Solo **Node.js** (gratis, obligatorio). Opcionales: **Obsidian** (gratis, para el grafo de colores) y una IA como **Claude**.
+Solo **Node.js** (gratis, obligatorio). Opcionales: **Claude Code** (para que la IA lo arme por ti) y **Obsidian** (gratis, para el grafo de colores).
 
 **¿En qué computadora funciona?**
 Pensado para **Windows** por ahora (los ayudantes de sesión usan PowerShell). El cerebro y el motor son Node, así que el núcleo es portable.
@@ -28,14 +31,14 @@ Pensado para **Windows** por ahora (los ayudantes de sesión usan PowerShell). E
 **¿Sirve para cualquier proyecto?**
 Sí: un negocio, tu contenido, tus estudios, una app… Tú defines tus "proyectos" y cada uno tiene su propio espacio ordenado.
 
-**¿Puedo usar otra IA que no sea Claude?**
-Sí. El arnés es neutral: cualquier IA (Claude, Gemini…) lee las mismas reglas.
+**¿Puedo usar otra IA o herramienta?**
+Sí. El arnés es neutral: cualquier herramienta de IA que trabaje con tus archivos sirve — y el **asistente** incluido no necesita ninguna.
 
 ## Para quien lo regala
 
 Copia **toda la carpeta `skill-arnes/`** y pásala (zip, USB, repo…). Quien la recibe solo abre
 `EMPIEZA-AQUI.md` y sigue 3 pasos; su IA (o el asistente) hace el resto — no necesita programar.
-Requisitos del que recibe: **Node.js** (gratis) o **Claude**; y opcional **Obsidian** (gratis) para el grafo.
+Requisitos del que recibe: **Node.js** (gratis) o **Claude Code**; y opcional **Obsidian** (gratis) para el grafo.
 
 ## Estructura
 

@@ -92,7 +92,7 @@
   <circle cx="820" cy="732" r="22" fill="#16A34A"/><text x="820" y="740" text-anchor="middle" font-size="21" font-weight="700" fill="#FFFFFF">3</text>
 
   <text x="180" y="782" text-anchor="middle" font-size="13.5" fill="#334155">Abre la carpeta</text>
-  <text x="180" y="800" text-anchor="middle" font-size="13.5" fill="#334155">con tu IA (Claude).</text>
+  <text x="180" y="800" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0F172A">en Claude Code.</text>
   <text x="500" y="782" text-anchor="middle" font-size="13.5" fill="#334155">Dile:</text>
   <text x="500" y="800" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0F172A">«arma mi arnés».</text>
   <text x="820" y="782" text-anchor="middle" font-size="13.5" fill="#334155">Responde 3 cositas: nombre,</text>
