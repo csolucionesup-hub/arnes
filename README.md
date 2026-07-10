@@ -8,6 +8,29 @@ Convierte el arnés (el sistema de orden de este vault) en algo que **se le pued
 para que arme el mismo orden con SUS proyectos. Premisa karpathy: el vault es el cerebro, el modelo
 solo mantiene → cualquiera puede replicarlo.
 
+## Preguntas frecuentes
+
+**¿Necesito saber programar?**
+No. Abres la carpeta con tu IA (como Claude) y le dices *"arma mi arnés"*: te hace 3 preguntas y arma todo por ti. (También hay un asistente que te pregunta, sin IA.)
+
+**¿Es gratis?**
+Sí. El arnés es gratis y de código abierto (licencia MIT). Solo necesitas Node.js (gratis) y una IA que te ayude. Ver el grafo de colores usa Obsidian, también gratis. Hay un extra opcional (auto-enlazar tus notas con IA) que puede tener costo, pero **no hace falta**.
+
+**¿Mis datos se suben a la nube? ¿Son míos?**
+Todo vive en **tu** computadora, en tus propias carpetas y notas. El arnés **no sube nada** a ningún lado. Tú siempre mandas; si un día quieres irte, son solo archivos: los mueves o los borras.
+
+**¿Qué necesito instalar?**
+Solo **Node.js** (gratis, obligatorio). Opcionales: **Obsidian** (gratis, para el grafo de colores) y una IA como **Claude**.
+
+**¿En qué computadora funciona?**
+Pensado para **Windows** por ahora (los ayudantes de sesión usan PowerShell). El cerebro y el motor son Node, así que el núcleo es portable.
+
+**¿Sirve para cualquier proyecto?**
+Sí: un negocio, tu contenido, tus estudios, una app… Tú defines tus "proyectos" y cada uno tiene su propio espacio ordenado.
+
+**¿Puedo usar otra IA que no sea Claude?**
+Sí. El arnés es neutral: cualquier IA (Claude, Gemini…) lee las mismas reglas.
+
 ## Para quien lo regala
 
 Copia **toda la carpeta `skill-arnes/`** y pásala (zip, USB, repo…). Quien la recibe solo abre
