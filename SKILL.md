@@ -42,6 +42,8 @@ El usuario dice **"arma mi arnés"**. Lo guías con calidez y haces el trabajo:
    - Sus **proyectos**: solo el **nombre** de cada uno (ej. *"Mi tienda"*). **TÚ derivas** el `id`
      (kebab) y la carpeta-cerebro (`_NOMBRE`) — no le hagas pensar en eso. Si el código de alguno
      vive en otro lado (WSL, otro repo), pregúntale la ruta; si no, usa la carpeta del cerebro.
+     Si el proyecto es de **contenido** (no código), ponle `codeType: "contenido"` → nace con la
+     taxonomía ligera `00 Contexto / 02 Trabajo / 03 Bitacora` (cada una con su README). Si es código, queda flat.
    - Una **palabra clave secreta** (candado de foco). Es de él; **no la inventes tú**.
    - **Dónde** crear su arnés (carpeta).
 2. **Arma el config** (copia `setup-config.example.json`, llénalo — deriva ids/cerebros de los nombres).

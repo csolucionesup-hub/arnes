@@ -106,6 +106,19 @@ for (const p of projects) {
   write(`${p.cerebro}/log.md`, fill(tpl('cerebro/log.md.tpl'), map));
   write(`${p.cerebro}/protocolo-codear-${p.id}.md`, fill(tpl('cerebro/protocolo-codear.md.tpl'), map));
   write(`${p.cerebro}/AGENTS.md`, fill(tpl('cerebro/AGENTS.md.tpl'), map));
+
+  // Taxonomía interna LIGERA, por tipo: contenido/agencia nace con 00/02/03; código queda flat.
+  // (Estándar auditado: solo los proyectos de contenido usan esta estructura; el código apunta a su repo.)
+  const quiereTaxonomia = p.taxonomy === 'light' || p.taxonomy === 'full' ||
+    (p.taxonomy == null && /agencia|contenido/i.test(p.codeType || ''));
+  if (quiereTaxonomia) {
+    const taxo = [
+      ['00 Contexto', 'El "qué es esto": cliente, marca, estrategia, conocimiento de fondo. Se lee PRIMERO al entrar. Convención de archivos: prefijo `ctx-`.'],
+      ['02 Trabajo', 'Los entregables y el trabajo en curso. Aquí vive el "hacer".'],
+      ['03 Bitacora', 'El diario fechado: qué se hizo y cuándo, una entrada por sesión. Junto con `log.md`, es donde "la última vez" queda escrita. Convención: prefijo `btc-` + fecha.'],
+    ];
+    for (const [dir, desc] of taxo) write(`${p.cerebro}/${dir}/README.md`, `# ${dir}\n\n${desc}\n`);
+  }
 }
 
 // 8. Helpers de sesión (candado de foco + freno pre-commit Nivel 3)

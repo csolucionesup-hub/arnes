@@ -45,8 +45,10 @@ const cerebroOf = s => '_' + slug(s).toUpperCase();
     const id = slug(name);
     if (!id) { console.log('    (nombre inválido, intenta otro)'); continue; }
     if (projects.some(p => p.id === id)) { console.log('    (ya lo agregaste, lo salto)'); continue; }
-    projects.push({ id, name, cerebro: cerebroOf(name), codeType: 'repo', codePath: cerebroOf(name) });
-    console.log(`    ✓ ${name}  ->  id "${id}", carpeta "${cerebroOf(name)}"`);
+    const tipo = (await ask(`    ¿"${name}" es contenido o código? [contenido/codigo]: `)).toLowerCase();
+    const esCodigo = tipo.startsWith('cod') || tipo.startsWith('cód');
+    projects.push({ id, name, cerebro: cerebroOf(name), codeType: esCodigo ? 'repo' : 'contenido', codePath: cerebroOf(name) });
+    console.log(`    ✓ ${name}  ->  id "${id}", carpeta "${cerebroOf(name)}"${esCodigo ? '  (código → flat)' : '  (contenido → con 00/02/03)'}`);
   }
   if (!projects.length) { console.log('\nSin proyectos, no hay nada que armar. Vuelve cuando tengas alguno.'); rl.close(); return; }
 
