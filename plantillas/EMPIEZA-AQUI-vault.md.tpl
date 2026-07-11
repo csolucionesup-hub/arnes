@@ -13,6 +13,22 @@ Este es tu **sistema de orden para trabajar con IA**. La idea, en una frase:
 
 > Truco: si no sabes por dónde empezar, dile a tu IA: **"lee AGENTS.md y explícame cómo trabajar aquí"**.
 
+> **Ejemplo:** {{OWNER}} abre la carpeta con Claude Code y dice *"trabajemos en Mi Tienda"*. La IA lee el contexto y la bitácora, ve que ayer quedó a medias el post de enero, y siguen desde ahí. Al terminar, la IA anota en la bitácora *"publiqué el post de enero"* y valida. Mañana, retomar toma segundos.
+
+## Dónde va cada cosa (en tus proyectos de contenido)
+
+Cada proyecto de **contenido** nace con estas carpetas — así nunca dudas dónde guardar algo, y cualquier IA sabe dónde buscar:
+
+| Carpeta | Qué guardas ahí | Ejemplo |
+|---|---|---|
+| **00 Contexto** | Lo que hay que saber del proyecto: cliente, marca, estrategia | `ctx-mi-tienda.md` |
+| **02 Trabajo** | Lo que produces: piezas, borradores, entregables | `campaña-enero/` |
+| **03 Bitácora** | Un diario: qué hiciste y cuándo | `btc-2026-07-10-lance-el-blog.md` |
+
+> **La regla de oro:** cuando retomas un proyecto, la IA lee `00 Contexto` (para saber **qué es**) y `03 Bitácora` + `log.md` (para saber **dónde quedaste**). Por eso, si registras lo que haces, la próxima sesión arranca al instante.
+
+*(Los proyectos de **código** no llevan estas carpetas: su trabajo vive en su repo; el cerebro solo lo apunta.)*
+
 ## Los candados que te cuidan (ya están activos; no haces nada)
 
 - **Ubícate o detente** — la IA no trabaja en la carpeta equivocada.
