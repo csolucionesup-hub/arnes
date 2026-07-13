@@ -38,7 +38,12 @@ function findMd(dir, depth = 0, acc = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.isDirectory()) {
       if (SKIP_DIRS.has(entry.name)) continue;
-      findMd(path.join(dir, entry.name), depth + 1, acc);
+      const sub = path.join(dir, entry.name);
+      // Código que vive DENTRO de un cerebro conserva su propio repo git: no es andamiaje del
+      // arnés. Saltar cualquier subrepo (tiene .git) para no confundir su AGENTS.md/index.md
+      // con los artefactos obligatorios del cerebro.
+      if (fs.existsSync(path.join(sub, '.git'))) continue;
+      findMd(sub, depth + 1, acc);
     } else if (entry.name.toLowerCase().endsWith('.md')) {
       acc.push({ name: entry.name, path: path.join(dir, entry.name) });
     }

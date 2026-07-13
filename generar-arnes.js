@@ -132,7 +132,13 @@ const colorGroups = projects.map((p, i) => ({
   query: `path:"${p.cerebro}"`,
   color: { a: 1, rgb: parseInt(PALETTE[i % PALETTE.length].slice(1), 16) }
 }));
-write('.obsidian/app.json', '{}\n');
+// Excluir del índice/grafo de Obsidian el código que viva DENTRO de un cerebro (code.path como
+// subcarpeta, p.ej. _WEB-TIENDA/codigo): si no, Obsidian indexa su node_modules e inunda el grafo.
+const codeInsideDirs = [...new Set(projects
+  .map(p => (p.codePath || p.cerebro || '').replace(/\\/g, '/'))
+  .filter(cp => cp.includes('/') && !cp.startsWith('//') && !/^[A-Za-z]:/.test(cp))
+  .map(cp => cp.replace(/\/+$/, '') + '/'))];
+write('.obsidian/app.json', JSON.stringify({ userIgnoreFilters: codeInsideDirs }, null, 2) + '\n');
 write('.obsidian/appearance.json', JSON.stringify({ theme: 'obsidian', enabledCssSnippets: ['grafo-hermoso'] }, null, 2));
 write('.obsidian/core-plugins.json', JSON.stringify({
   'file-explorer': true, 'global-search': true, switcher: true, graph: true, backlink: true,

@@ -24,7 +24,12 @@ const m = JSON.parse(fs.readFileSync(path.join(HARNESS_DIR, 'manifest.json'), 'u
 function walk(dir, acc = []) {
   if (!fs.existsSync(dir)) return acc;
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (e.isDirectory()) { if (SKIP.has(e.name)) continue; walk(path.join(dir, e.name), acc); }
+    if (e.isDirectory()) {
+      if (SKIP.has(e.name)) continue;
+      const sub = path.join(dir, e.name);
+      if (fs.existsSync(path.join(sub, '.git'))) continue; // subrepo (código dentro del cerebro) → no es nota del arnés
+      walk(sub, acc);
+    }
     else if (e.name.toLowerCase().endsWith('.md')) acc.push(path.join(dir, e.name));
   }
   return acc;
