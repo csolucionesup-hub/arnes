@@ -47,11 +47,12 @@ const manifest = loadJson(path.join(HARNESS_DIR, 'manifest.json'), null);
 if (!manifest) { console.error('FATAL: no pude leer manifest.json'); process.exit(2); }
 
 const WINDOW_MS = (cfg.windowHours || 26) * 3600 * 1000;
-const NON_PROJECT_ROOTS = new Set(cfg.knownNonProjectRoots || ['_AGENTES', '_MASTER-CS', '_PROYECTOS-PERSONALES']);
+const NON_PROJECT_ROOTS = new Set(cfg.knownNonProjectRoots || []);
 const LOOSE_OK = new Set(cfg.knownLooseRootFiles || []);
-const CONTAINERS = cfg.containers || ['_PROYECTOS-PERSONALES'];
+const CONTAINERS = cfg.containers || [];
 const SKIP = new Set(cfg.skipDirs || ['node_modules', '.git', '.obsidian', 'graphify-out', '_sistema', '.agents', '.claude']);
 const EXTERNAL = cfg.externalAreas || [];
+const AUTO_AREAS = cfg.autoAreas || []; // rutas cuyo churn es auto-generado (reportes de pipelines) → NO es "sesión sin cerrar"
 
 // carpetas-cerebro y rutas de código declaradas en el manifest
 const cerebroDirs = new Set((manifest.projects || []).map(p => p.cerebro).filter(Boolean));
@@ -136,13 +137,26 @@ function isRepo(cwd) { return gitLines(cwd, 'rev-parse --is-inside-work-tree') !
 // Conjunto de rutas (relativas al vault) con cambios reales en git. Se usa para NO confundir
 // "trabajo sin registrar" con archivos que git solo tocó por normalización de fin de línea
 // (CRLF) — esos ya están committeados y limpios. Cacheado: git status no cambia durante la ronda.
+// Extrae la ruta de una línea de `git status --porcelain`. Corre git con core.quotepath=false
+// (ver gitStatusPorcelain) para que nombres con tildes/ñ NO lleguen escapados como "\303\261..." y
+// se pierdan del cruce con rutas reales — crítico en un vault en español. Los renombres vienen como
+// "R  old -> new": nos quedamos con la ruta nueva (la que existe en disco).
+function parsePorcelainPath(line) {
+  let p = line.slice(3);
+  const arrow = p.indexOf(' -> ');
+  if (arrow !== -1) p = p.slice(arrow + 4);
+  return p.replace(/^"|"$/g, '').replace(/\\/g, '/');
+}
+function gitStatusPorcelain(cwd) {
+  return gitLines(cwd, '-c core.quotepath=false status --porcelain') || [];
+}
 let _dirtySet = null;
 function gitDirtySet() {
   if (_dirtySet) return _dirtySet;
   _dirtySet = new Set();
   if (!isRepo(VAULT_ROOT)) return _dirtySet;
-  for (const line of (gitLines(VAULT_ROOT, 'status --porcelain') || [])) {
-    _dirtySet.add(line.slice(3).replace(/^"|"$/g, '').replace(/\\/g, '/'));
+  for (const line of gitStatusPorcelain(VAULT_ROOT)) {
+    _dirtySet.add(parsePorcelainPath(line));
   }
   return _dirtySet;
 }
@@ -251,11 +265,12 @@ function detectWorkWithoutLog() {
 // F) Git del vault: trabajo sin commitear, agrupado por proyecto (sesión sin cerrar)
 function detectUncommitted() {
   if (!isRepo(VAULT_ROOT)) return;
-  const st = gitLines(VAULT_ROOT, 'status --porcelain') || [];
+  const st = gitStatusPorcelain(VAULT_ROOT);
   if (!st.length) return;
   const porProyecto = new Map();
   for (const line of st) {
-    const p = line.slice(3).replace(/^"|"$/g, '');
+    const p = parsePorcelainPath(line);
+    if (AUTO_AREAS.some(a => p.startsWith(a))) continue; // reportes auto-generados (pipeline): su churn no es "sesión sin cerrar"
     const parts = p.split('/');
     // archivo suelto en la raíz (sin carpeta) → un solo bucket "(raíz)"; carpetas de sistema → ignorar
     let top = parts.length > 1 ? parts[0] : '(raíz)';
@@ -458,10 +473,10 @@ function detectCommitMezclado() {
 // esto lo previene antes). Andamiaje y archivos de sistema no cuentan (mismo criterio que el candado).
 function precommitCheck() {
   if (!isRepo(VAULT_ROOT)) { console.log('Pre-commit: no es repo git; nada que revisar.'); return 0; }
-  const st = gitLines(VAULT_ROOT, 'status --porcelain') || [];
+  const st = gitStatusPorcelain(VAULT_ROOT);
   const porProy = new Map();
   for (const line of st) {
-    const p = line.slice(3).replace(/^"|"$/g, '').replace(/\\/g, '/');
+    const p = parsePorcelainPath(line);
     if (esAndamiajeName(p.split('/').pop())) continue;
     const proj = proyectoDeRuta(p);
     if (!proj) continue;
