@@ -27,7 +27,7 @@ const CANDIDATES = [
 ].filter(Boolean);
 const HARNESS = CANDIDATES.find(p => fs.existsSync(p));
 const MOTOR = path.join(__dirname, 'motor');
-const FILES = ['validate.js', 'auditar.js', 'link-index.js'];
+const FILES = ['validate.js', 'auditar.js', 'link-index.js', 'resolver-solicitud.js'];
 
 // Mapa de tokenización desde el archivo LOCAL (no versionado): pares [regex, reemplazo] + leakCheck.
 const TOKENS_FILE = path.join(__dirname, 'sync-tokens.local.json');

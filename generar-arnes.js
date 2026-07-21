@@ -69,7 +69,8 @@ const auditCfg = {
   _comment: 'Config del policía (auditar.js). Aditivo, NO es el contrato. Se puede afinar sin aprobación.',
   windowHours: 26,
   knownNonProjectRoots: ['_AGENTES', META],
-  knownLooseRootFiles: ['AGENTS.md', 'CLAUDE.md', 'CODEX.md', 'GEMINI.md', 'harness-check.ps1', '.gitignore'],
+  knownLooseRootFiles: ['AGENTS.md', 'CLAUDE.md', 'CODEX.md', 'GEMINI.md', 'harness-check.ps1',
+    'abrir-sesion.ps1', 'cerrar-sesion.ps1', 'resolver-solicitud.ps1', 'EMPIEZA-AQUI.md', '.gitignore'],
   containers: [],
   skipDirs: ['node_modules', '.git', '.obsidian', 'graphify-out', '_sistema', '.agents', '.claude', 'dist'],
   externalAreas: []
@@ -79,10 +80,20 @@ write(`${META}/_sistema/harness/audit-config.json`, JSON.stringify(auditCfg, nul
 // 3. Motor (copiado tal cual, LOCALIZADO al nuevo dueño — solo toca strings/comentarios)
 const localize = (s) => s
   .replace(/__ORG__/g, ORG)
-  .replace(/__OWNER__/g, OWNER);
-for (const f of ['validate.js', 'auditar.js', 'link-index.js']) {
+  .replace(/__OWNER__/g, OWNER)
+  .replace(/__METAHARNESS__/g, `${META}/_sistema/harness`);
+for (const f of ['validate.js', 'auditar.js', 'link-index.js', 'resolver-solicitud.js']) {
   write(`${META}/_sistema/harness/${f}`, localize(fs.readFileSync(path.join(SKILL_DIR, 'motor', f), 'utf8')));
 }
+// Wrapper .ps1 del resolver (clasifica una petición → proyecto/foco; lo usa el candado de foco).
+write('resolver-solicitud.ps1', [
+  'param([Parameter(Mandatory = $true)][string]$Texto)',
+  "$ErrorActionPreference = 'Stop'",
+  '$vault = Split-Path -Parent $MyInvocation.MyCommand.Path',
+  "$script = Join-Path $vault '" + META + "\\_sistema\\harness\\resolver-solicitud.js'",
+  'node $script $Texto',
+  'exit $LASTEXITCODE'
+].join('\n') + '\n');
 
 // 4. Constitución (AGENTS.md) + punteros por modelo
 const wikilinks = projects.map(p => `[[${p.cerebro}/index|${p.name}]]`).join(' · ');
