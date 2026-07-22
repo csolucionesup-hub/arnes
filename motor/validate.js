@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const HARNESS_DIR = __dirname;
-const VAULT_ROOT = path.resolve(HARNESS_DIR, '..', '..', '..'); // harness -> _sistema -> _MASTER-CS -> vault
+const VAULT_ROOT = path.resolve(HARNESS_DIR, '..', '..', '..'); // harness -> _sistema -> __META__ -> vault
 const SKIP_DIRS = new Set(['node_modules', '.git', '.obsidian', 'graphify-out', '_sistema', '.agents', '.claude']);
 
 const C = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', gray: '\x1b[90m', bold: '\x1b[1m', reset: '\x1b[0m' };

@@ -47,7 +47,7 @@ const manifest = loadJson(path.join(HARNESS_DIR, 'manifest.json'), null);
 if (!manifest) { console.error('FATAL: no pude leer manifest.json'); process.exit(2); }
 
 const WINDOW_MS = (cfg.windowHours || 26) * 3600 * 1000;
-const NON_PROJECT_ROOTS = new Set(cfg.knownNonProjectRoots || []);
+const NON_PROJECT_ROOTS = new Set(cfg.knownNonProjectRoots || ['_AGENTES', '__META__', '_PROYECTOS-PERSONALES']);
 const LOOSE_OK = new Set(cfg.knownLooseRootFiles || []);
 const CONTAINERS = cfg.containers || [];
 const SKIP = new Set(cfg.skipDirs || ['node_modules', '.git', '.obsidian', 'graphify-out', '_sistema', '.agents', '.claude']);

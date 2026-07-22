@@ -81,7 +81,8 @@ write(`${META}/_sistema/harness/audit-config.json`, JSON.stringify(auditCfg, nul
 const localize = (s) => s
   .replace(/__ORG__/g, ORG)
   .replace(/__OWNER__/g, OWNER)
-  .replace(/__METAHARNESS__/g, `${META}/_sistema/harness`);
+  .replace(/__METAHARNESS__/g, `${META}/_sistema/harness`)
+  .replace(/__META__/g, META);
 for (const f of ['validate.js', 'auditar.js', 'link-index.js', 'resolver-solicitud.js']) {
   write(`${META}/_sistema/harness/${f}`, localize(fs.readFileSync(path.join(SKILL_DIR, 'motor', f), 'utf8')));
 }
