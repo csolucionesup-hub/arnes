@@ -1,0 +1,17 @@
+{
+  "name": "armar-arnes",
+  "version": "0.1.0",
+  "description": "Generador del arnés: un sistema de orden replicable para trabajar con IA sobre varios proyectos.",
+  "license": "MIT",
+  "homepage": "https://github.com/csolucionesup-hub/arnes",
+  "bin": {
+    "armar-arnes": "asistente-setup.js"
+  },
+  "scripts": {
+    "setup": "node asistente-setup.js",
+    "generar": "node generar-arnes.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

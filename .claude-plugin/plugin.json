@@ -1,0 +1,9 @@
+{
+  "name": "armar-arnes",
+  "version": "0.1.0",
+  "description": "Arma el 'arnés': un sistema de orden para dirigir varios proyectos de código/contenido con IA. Genera un vault completo (constitución AGENTS.md, contrato manifest.json, candados anti-deriva ubicación/foco/commit-atómico, un policía que audita, y un cerebro por proyecto index/log/protocolo/guardián) que pasa el validador. La inteligencia vive en los archivos, no en el modelo.",
+  "author": { "name": "Creer Soluciones UP" },
+  "license": "MIT",
+  "homepage": "https://github.com/csolucionesup-hub/arnes",
+  "keywords": ["arnes", "harness", "segundo-cerebro", "orden", "scaffolding", "obsidian", "multi-proyecto"]
+}

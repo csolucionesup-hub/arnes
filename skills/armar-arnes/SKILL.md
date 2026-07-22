@@ -37,6 +37,13 @@ Un vault listo que **pasa el validador**, con:
 
 El usuario dice **"arma mi arnés"**. Lo guías con calidez y haces el trabajo:
 
+> **Dónde están los scripts (BASE):** este skill trae el generador, el asistente y el motor junto a él.
+> - Instalado como plugin → la BASE es **`${CLAUDE_PLUGIN_ROOT}`**.
+> - Si el usuario abrió la carpeta del regalo directamente → la BASE es la **raíz de esa carpeta**.
+>
+> Usa esa BASE para `generar-arnes.js`, `asistente-setup.js` y `setup-config.example.json`. El vault que
+> generas va a la **carpeta-destino que elija el usuario**, no a la BASE.
+
 1. **Entrevista corta y amable.** Pregúntale, de a poco (una cosa a la vez):
    - Su **nombre** (y su organización, si quiere).
    - Sus **proyectos**: solo el **nombre** de cada uno (ej. *"Mi tienda"*). **TÚ derivas** el `id`
@@ -46,14 +53,14 @@ El usuario dice **"arma mi arnés"**. Lo guías con calidez y haces el trabajo:
      taxonomía ligera `00 Contexto / 02 Trabajo / 03 Bitacora` (cada una con su README). Si es código, queda flat.
    - Una **palabra clave secreta** (candado de foco). Es de él; **no la inventes tú**.
    - **Dónde** crear su arnés (carpeta).
-2. **Arma el config** (copia `setup-config.example.json`, llénalo — deriva ids/cerebros de los nombres).
-3. **Genera:** `node generar-arnes.js <config.json> <carpeta-destino>`.
+2. **Arma el config** (copia `<BASE>/setup-config.example.json`, llénalo — deriva ids/cerebros de los nombres).
+3. **Genera:** `node <BASE>/generar-arnes.js <config.json> <carpeta-destino>`.
 4. **Verifica** por él: `cd <destino>` → `git init` → `.\harness-check.ps1` → debe decir **ARNÉS OK**.
 5. **Oriéntalo, no lo dejes solo:** dile que abra el `EMPIEZA-AQUI.md` que quedó en su vault,
    ofrécele instalar Obsidian para ver el grafo de colores, y explícale en 2 frases los candados
    (ubícate-o-detente, un-proyecto-por-sesión, commit atómico) y que **él decide, la IA mantiene**.
 
-Si el usuario prefiere no usarte, apúntalo a `node asistente-setup.js` (hace lo mismo con preguntas).
+Si el usuario prefiere no usarte, apúntalo a `node <BASE>/asistente-setup.js` (hace lo mismo con preguntas).
 
 ## Reglas al instalar (respeta el propio arnés)
 

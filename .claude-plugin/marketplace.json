@@ -1,0 +1,14 @@
+{
+  "name": "arnes",
+  "owner": { "name": "Creer Soluciones UP" },
+  "plugins": [
+    {
+      "name": "armar-arnes",
+      "source": ".",
+      "description": "Sistema de orden replicable para trabajar con IA sobre varios proyectos: constitución que cualquier modelo lee, candados anti-deriva, policía que audita, y un cerebro por proyecto. Di 'arma mi arnés'.",
+      "version": "0.1.0",
+      "author": { "name": "Creer Soluciones UP" },
+      "license": "MIT"
+    }
+  ]
+}

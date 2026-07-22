@@ -34,6 +34,24 @@ Sí: un negocio, tu contenido, tus estudios, una app… Tú defines tus "proyect
 **¿Puedo usar otra IA o herramienta?**
 Sí. El arnés es neutral: cualquier herramienta de IA que trabaje con tus archivos sirve — y el **asistente** incluido no necesita ninguna.
 
+## Instalar como plugin de Claude Code (para usarlo desde cualquier sesión)
+
+Además de "copiar la carpeta", el arnés es un **plugin instalable**: así lo tienes disponible en
+cualquier proyecto sin copiar nada.
+
+```
+/plugin marketplace add csolucionesup-hub/arnes
+/plugin install armar-arnes
+```
+
+Luego, en cualquier sesión de Claude Code, escribe **"arma mi arnés"** y la skill hace el resto
+(entrevista → genera tu vault → lo valida). El generador y el motor viajan dentro del plugin y se
+resuelven vía `${CLAUDE_PLUGIN_ROOT}`, así que funciona esté donde esté instalado.
+
+> Las dos vías conviven: **plugin** (para ti/tu equipo, siempre a mano) y **copiar la carpeta**
+> (para regalar por zip/USB a alguien no técnico). El asistente sin IA (`node asistente-setup.js`)
+> sigue disponible en ambas.
+
 ## Para quien lo regala
 
 Copia **toda la carpeta `skill-arnes/`** y pásala (zip, USB, repo…). Quien la recibe solo abre
@@ -43,9 +61,15 @@ Requisitos del que recibe: **Node.js** (gratis) o **Claude Code**; y opcional **
 ## Estructura
 
 ```
-skill-arnes/
+arnes/
+  .claude-plugin/
+    plugin.json                # manifiesto del plugin (name/version/description)
+    marketplace.json           # para /plugin marketplace add
+  skills/
+    armar-arnes/
+      SKILL.md                 # cómo lo arma un modelo (Claude) conversando
+  package.json                 # metadata Node (bin: asistente-setup)
   EMPIEZA-AQUI.md              # <- lo PRIMERO que abre quien lo recibe
-  SKILL.md                     # cómo lo arma un modelo (Claude) conversando
   README.md                    # esto (detalle técnico)
   generar-arnes.js             # el generador: config -> vault-arnés COMPLETO
   asistente-setup.js           # asistente interactivo SIN IA (preguntas -> genera)
@@ -59,7 +83,7 @@ skill-arnes/
     cerebro/                   #   un juego por proyecto
       index.md.tpl · log.md.tpl · protocolo-codear.md.tpl · AGENTS.md.tpl (guardián)
   motor/                       # el motor PROBADO, copiado tal cual (se localiza al generar)
-    validate.js · auditar.js · link-index.js
+    validate.js · auditar.js · link-index.js · resolver-solicitud.js
 ```
 
 ## Uso rápido
